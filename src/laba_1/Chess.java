@@ -1,3 +1,5 @@
+package laba_1;
+
 public class Chess {
     public static void main(String[] args) {
         char[][] board = new char[8][8];

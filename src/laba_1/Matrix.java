@@ -1,3 +1,5 @@
+package laba_1;
+
 import java.util.Scanner;
 
 //6 7 6 2 1
@@ -41,7 +43,7 @@ public class Matrix {
             }
         }
 
-        System.out.print("Main diag: " + sum_main_diag + "\n");
+        System.out.print("laba_1.Main diag: " + sum_main_diag + "\n");
         System.out.print("Secondary diag: " + sum_secondary_diag + "\n");
         System.out.print("Perimeter: " + sum_perimeter + "\n");
 
