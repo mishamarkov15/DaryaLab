@@ -8,11 +8,14 @@ public class Human {
 
     private double calories;
 
-    Human(int age, double weight, int height, char gender) {
+    private int activityID;
+
+    Human(int age, double weight, int height, char gender, int activityID) {
         this.age = age;
         this.weight = weight;
         this.height = height;
         this.gender = gender;
+        setActivityID(activityID);
         calories = 0;
     }
 
@@ -24,41 +27,86 @@ public class Human {
         this.calories = calories;
     }
 
-    double getDCI(double activity_coefficient) {
-        return (weight * 10 + height * 6.25 - age * 5 + (gender == 'M' ? 5 : -161)) * activity_coefficient;
+    public double getDCI() {
+        return (weight * 10 + height * 6.25 - age * 5 + (gender == 'M' ? 5 : -161)) * getActivityIDCoefficient();
     }
 
-    int getAge() {
+    public int getAge() {
         return age;
     }
 
-    double getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    double getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    char getGender() {
+    public char getGender() {
         return gender;
     }
 
 
-    void setAge(int new_age) {
+    public void setAge(int new_age) {
         age = new_age;
     }
 
-    void setWeight(double new_weight) {
+    public void setWeight(double new_weight) {
         weight = new_weight;
     }
 
-    void setHeight(int new_height) {
+    public void setHeight(int new_height) {
         height = new_height;
     }
 
-    void setGender(char new_gender) {
+    public void setGender(char new_gender) {
         height = new_gender;
     }
 
+    public int getActivityID() {
+        return activityID;
+    }
+
+    public double getActivityIDCoefficient() {
+        switch (activityID) {
+            case 0 -> {
+                return 1.2;
+            }
+            case 1 -> {
+                return 1.38;
+            }
+            case 2 -> {
+                return 1.46;
+            }
+            case 3 -> {
+                return 1.55;
+            }
+            case 4 -> {
+                return 1.64;
+            }
+            case 5 -> {
+                return 1.73;
+            } case 6 -> {
+                return 1.9;
+            }
+            default -> {
+                return 0.0;
+            }
+        }
+    }
+
+    public void setActivityID(int new_activityID) {
+        if (0 > new_activityID || new_activityID > 6) {
+            System.out.println("Error. Can not create activity ID with value not in range [0, 6]");
+            activityID = 0;
+        } else {
+            activityID = new_activityID;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Age: %d\nWeight: %.2f\nHeight: %d\nGender: %c\nActivity coeff: %.2f\nTotal calories: %.2f\n".formatted(age, weight, height, gender, getActivityIDCoefficient(), calories);
+    }
 }

@@ -67,5 +67,8 @@ public class Product {
         return (double) (grams) / 100.0 * calories;
     }
 
-
+    @Override
+    public String toString() {
+        return name;
+    }
 }
